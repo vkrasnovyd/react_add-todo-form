@@ -1,5 +1,6 @@
 import users from '../../api/users';
 import { capitalize } from '../../services/services';
+import { FormField } from '../FormField';
 
 interface Props {
   fieldName: string;
@@ -20,11 +21,12 @@ export const SelectField: React.FC<Props> = ({
   hasError = false,
   updateHasError = () => {},
 }) => (
-  <div className="field">
-    <label htmlFor={fieldName} className="field-label">
-      {label}
-    </label>
-
+  <FormField
+    fieldName={fieldName}
+    label={label}
+    errorMessage={`Please choose a ${fieldName}`}
+    hasError={hasError}
+  >
     <select
       data-cy={`${fieldName}Select`}
       value={value}
@@ -40,8 +42,5 @@ export const SelectField: React.FC<Props> = ({
         </option>
       ))}
     </select>
-    {hasError && (
-      <span className="error">{`Please choose a ${fieldName}`}</span>
-    )}
-  </div>
+  </FormField>
 );

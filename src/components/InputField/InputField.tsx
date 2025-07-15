@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
 import { capitalize } from '../../services/services';
+import { FormField } from '../FormField';
 
 interface Props {
   fieldName: string;
@@ -21,10 +22,12 @@ export const InputField: React.FC<Props> = ({
   hasError = false,
   updateHasError = () => {},
 }) => (
-  <div className="field">
-    <label htmlFor={fieldName} className="field-label">
-      {label}
-    </label>
+  <FormField
+    fieldName={fieldName}
+    label={label}
+    errorMessage={`Please enter a ${fieldName}`}
+    hasError={hasError}
+  >
     <input
       type="text"
       id={fieldName}
@@ -39,6 +42,5 @@ export const InputField: React.FC<Props> = ({
         updateHasError(false);
       }}
     />
-    {hasError && <span className="error">{`Please enter a ${fieldName}`}</span>}
-  </div>
+  </FormField>
 );
