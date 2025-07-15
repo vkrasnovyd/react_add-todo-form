@@ -9,7 +9,9 @@ import { Task } from './types/Task';
 
 export const App = () => {
   const [todos, setTodos] = useState(todosFromServer);
-  const [maxId, setMaxId] = useState(Math.max(...todos.map(todo => +todo.id)));
+  const [maxId, setMaxId] = useState(
+    todos ? Math.max(...todos.map(todo => todo.id)) : 0,
+  );
   const addTask = (newTask: Task) => {
     const newMaxId = maxId + 1;
 
