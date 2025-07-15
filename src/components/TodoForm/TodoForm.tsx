@@ -12,7 +12,9 @@ export const TodoForm = ({ onSubmit }: Props) => {
   const [title, setTitle] = useState('');
   const [userId, setUserId] = useState(0);
   const [count, setCount] = useState(0);
-  const isFormFilled = title && userId;
+  const [hasTitleError, setHasTitleError] = useState(false);
+  const [hasUserError, setHasUserError] = useState(false);
+
   const clearForm = () => {
     setTitle('');
     setUserId(0);
@@ -21,8 +23,18 @@ export const TodoForm = ({ onSubmit }: Props) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const hasNoTitle = !title.trim();
+    const hasNoUserId = !userId;
 
-    if (!isFormFilled) {
+    if (hasNoTitle) {
+      setHasTitleError(true);
+    }
+
+    if (hasNoUserId) {
+      setHasUserError(true);
+    }
+
+    if (hasNoTitle || hasNoUserId) {
       return;
     }
 
@@ -39,10 +51,23 @@ export const TodoForm = ({ onSubmit }: Props) => {
 
   return (
     <form key={count} onSubmit={handleSubmit}>
-      <InputField fieldName="title" value={title} onChange={setTitle} />
-      <SelectField fieldName="user" value={userId} onChange={setUserId} />
+      <InputField
+        fieldName="title"
+        value={title}
+        onChange={setTitle}
+        hasError={hasTitleError}
+        updateHasError={setHasTitleError}
+      />
 
-      <button type="submit" data-cy="submitButton" disabled={!isFormFilled}>
+      <SelectField
+        fieldName="user"
+        value={userId}
+        onChange={setUserId}
+        hasError={hasUserError}
+        updateHasError={setHasUserError}
+      />
+
+      <button type="submit" data-cy="submitButton">
         Add
       </button>
     </form>
