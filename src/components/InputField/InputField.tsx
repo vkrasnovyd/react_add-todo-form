@@ -28,19 +28,21 @@ export const InputField: React.FC<Props> = ({
     errorMessage={`Please enter a ${fieldName}`}
     hasError={hasError}
   >
-    <input
-      type="text"
-      id={fieldName}
-      data-cy={`${fieldName}Input`}
-      className={classNames('input', {
-        'is-danger': hasError,
-      })}
-      value={value}
-      placeholder={placeholder}
-      onChange={event => {
-        onChange(event.target.value);
-        updateHasError(false);
-      }}
-    />
+    <div className="control">
+      <input
+        type="text"
+        id={fieldName}
+        data-cy={`${fieldName}Input`}
+        className={classNames('input', {
+          'is-danger': hasError,
+        })}
+        value={value}
+        placeholder={placeholder}
+        onChange={event => {
+          onChange(event.target.value);
+          updateHasError(false);
+        }}
+      />
+    </div>
   </FormField>
 );

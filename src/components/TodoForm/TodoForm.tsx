@@ -50,7 +50,7 @@ export const TodoForm = ({ onSubmit }: Props) => {
   };
 
   return (
-    <form key={count} onSubmit={handleSubmit}>
+    <form key={count} onSubmit={handleSubmit} className="box">
       <InputField
         fieldName="title"
         value={title}
@@ -67,7 +67,11 @@ export const TodoForm = ({ onSubmit }: Props) => {
         updateHasError={setHasUserError}
       />
 
-      <button type="submit" data-cy="submitButton">
+      <button
+        type="submit"
+        data-cy="submitButton"
+        className="button mt-3 is-link"
+      >
         Add
       </button>
     </form>

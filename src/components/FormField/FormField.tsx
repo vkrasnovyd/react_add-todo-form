@@ -16,10 +16,10 @@ export const FormField: React.FC<Props> = ({
   children,
 }) => (
   <div className="field">
-    <label htmlFor={fieldName} className="field-label">
+    <label htmlFor={fieldName} className="label">
       {label}
     </label>
     {children}
-    {hasError && <span className="error">{errorMessage}</span>}
+    {hasError && <span className="help is-danger">{errorMessage}</span>}
   </div>
 );

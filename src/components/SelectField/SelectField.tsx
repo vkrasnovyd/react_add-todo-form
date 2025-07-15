@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import users from '../../api/users';
 import { capitalize } from '../../services/services';
 import { FormField } from '../FormField';
@@ -27,20 +28,28 @@ export const SelectField: React.FC<Props> = ({
     errorMessage={`Please choose a ${fieldName}`}
     hasError={hasError}
   >
-    <select
-      data-cy={`${fieldName}Select`}
-      value={value}
-      onChange={event => {
-        onChange(+event.target.value);
-        updateHasError(false);
-      }}
-    >
-      <option value="0">{placeholder}</option>
-      {users.map(user => (
-        <option value={user.id} key={user.id}>
-          {user.name}
-        </option>
-      ))}
-    </select>
+    <div className="control has-icons-left">
+      <div className={classNames('select', { 'is-danger': hasError })}>
+        <select
+          data-cy={`${fieldName}Select`}
+          id={fieldName}
+          value={value}
+          onChange={event => {
+            onChange(+event.target.value);
+            updateHasError(false);
+          }}
+        >
+          <option value="0">{placeholder}</option>
+          {users.map(user => (
+            <option value={user.id} key={user.id}>
+              {user.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="icon is-left">
+        <i className="fas fa-user"></i>
+      </div>
+    </div>
   </FormField>
 );

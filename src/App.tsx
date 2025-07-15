@@ -1,3 +1,4 @@
+import 'bulma/css/bulma.css';
 import './App.scss';
 import { useState } from 'react';
 
@@ -17,8 +18,8 @@ export const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Add todo form</h1>
+    <div className="section">
+      <h1 className="is-size-2 mb-3">Add todo form</h1>
       <TodoForm onSubmit={addTask} />
       <TodoList todos={todos} />
     </div>
